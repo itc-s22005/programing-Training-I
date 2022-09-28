@@ -1,6 +1,5 @@
 from tkinter import *
 
-
 from ball import Ball
 from paddle import Paddle
 from block import Block
