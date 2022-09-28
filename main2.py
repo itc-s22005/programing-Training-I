@@ -59,10 +59,8 @@ class Game:
 
         # 次回 update の呼び出し予約
         self.canvas.after(1000 // 60, self.update)
-
+        
 
 game = Game()
 game.main()
-                                                                                         66,1          Bot
-
                                                                               
