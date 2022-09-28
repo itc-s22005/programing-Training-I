@@ -2,7 +2,7 @@ class Paddle:
     """ プレイヤー(パドル)のクラス
     基本的には形作って移動させるだけ。
     """
-
+    
     def __init__(self, canvas, color):
         """ 初期化処理。
         Canvas と色を受け取って矩形(長方形)を描く
@@ -54,8 +54,7 @@ class Block:
         self.pos_x = x
         self.pos_y = y
         self.id = canvas.create_rectangle(0,0,50,20,fill=color,outline='white')
-        self.canvas.move(self.id,25 + self.pos_x * 50                                                                                   , HEIGHT - 50 + self.pos_y * -20)
+        self.canvas.move(self.id,25 + self.pos_x * 50											, HEIGHT - 50 + self.pos_y * -20)
 
     def delete(self):
         self.canvas.delete(self.id)
-                                                                               
