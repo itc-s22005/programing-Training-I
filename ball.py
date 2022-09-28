@@ -6,7 +6,7 @@ class Ball:
     """ ボールクラス
     円を描く関数を使って表現する。
     """
-
+    
     def __init__(self, canvas, color, paddle):
         """ 初期化処理
         メイン側から Canvas を受け取る。
@@ -15,7 +15,7 @@ class Ball:
         """
         self.canvas = canvas
         self.paddle = paddle
-
+        
         # 楕円を描く関数できれいな円を描画する。識別番号を保持しておく。
         self.id = self.canvas.create_oval(10, 10, 25, 25, fill=color)
         # 画面サイズ(縦/横)を取得しておく。
@@ -29,13 +29,14 @@ class Ball:
         # ボールのx/yのスピードを0でとりあえず初期化
         self.x = 0
         self.y = 0
-
+        
 
     def start(self, evt):
         # ボール移動中なら何もしない
         if self.speed != 0:
             return
-         # 初期位置へ移動(絶対座標)
+        
+        # 初期位置へ移動(絶対座標)
         self.canvas.moveto(self.id, self.init_x, self.init_y)
         self.speed = 3      # 移動スピード
         """ 発射角度のリストを生成(angle の処理内容)
@@ -49,7 +50,7 @@ class Ball:
         # 三角関数をつかって、x軸y軸それぞれの移動速度を求める。
         self.x = math.cos(angle) * self.speed * direction
         self.y = math.sin(angle) * self.speed
-
+    
     def draw(self):
         # ボールを移動させる
         self.canvas.move(self.id, self.x, self.y)
@@ -72,7 +73,7 @@ class Ball:
         # 下に当たった(pos[3]が越えた)かどうか
         if pos[3] >= self.canvas_height:
             self.fix(0, pos[3] - self.canvas_height)
-           self.failed()  #プレイヤーのミスを処理する関数を呼ぶ
+            self.failed()  #プレイヤーのミスを処理する関数を呼ぶ
 
         # パドルとの衝突判定
         paddle_pos = self.canvas.coords(self.paddle.id)
@@ -82,8 +83,8 @@ class Ball:
         if pos[2] >= paddle_pos[0] and pos[0] <= paddle_pos[2] \
            and paddle_pos[1] <= pos[3] <= paddle_pos[3]:
             self.fix(0, pos[3] - paddle_pos[1])
-
-
+        
+        
     def fix(self, diff_x, diff_y):
         # x/y の差分を受け取って、2倍した数を逆に移動する。
         self.canvas.move(self.id, -(diff_x * 2), -(diff_y * 2))
@@ -91,7 +92,7 @@ class Ball:
         # 差分があったら(0でなければ)跳ね返ったとして向きを反転させる。
         if diff_x != 0:
             self.x = -self.x
-
+            
         if diff_y != 0:
             self.y = -self.y
 
@@ -99,7 +100,4 @@ class Ball:
         # 動きを止める
         self.x = 0
         self.y = 0
-        self.speed = 0
-
-
-                                                                         
+        self.speed = 0                                                                         
